@@ -1,0 +1,84 @@
+:root {
+    --dark: #36393b;
+    --blue: #6bbfff;
+    --orange: #a44200;
+    --light: #9b9b9b;
+    --headerfont: 'Cinzel', sans-serif;
+    --bodyfont: 'Playball', cursive;
+}
+body {
+  background-color: var(--orange);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--light);
+}
+.welcome_card {
+    background-color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    border-radius: 10px;
+    border: 5px solid var(--blue);
+}
+.header {
+    text-align: center;
+    border-bottom: 2px solid var(--orange);
+    color: var(--orange);
+    font-family: var(--headerfont);
+    font-size: 48px;
+    margin: 0px;
+}
+.message_card {
+    background-color: var(--light);
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--bodyfont);
+    font-size: 30px;
+    color: var(--dark);
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid var(--blue);
+}
+.message {
+    margin: 10px;
+}
+.sendoff {
+    font-family: var(--headerfont);
+    font-size: 42px;
+    color: var(--orange);
+    border-bottom: 2px solid var(--orange);
+    margin: 0;
+}
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#randomizebtn, #favoritesbtn {
+    display: flex;
+    background-color: var(--orange);
+    font-family: var(--headerfont);
+    text-align: center;
+    color: var(--light);
+    font-size: 42px;
+    border: 2px solid var(--blue);
+    border-radius: 5px;
+    padding: 5px 20px;
+    margin: 10px 50px;
+    cursor: pointer;
+}
+#randomizebtn:hover,
+#favoritesbtn:hover {
+    border: 5px solid var(--orange);
+    background-color: var(--blue);
+    color: var(--dark);
+}
