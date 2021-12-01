@@ -28,7 +28,8 @@ body {
     border-bottom: 2px solid var(--orange);
     color: var(--orange);
     font-family: var(--headerfont);
-    font-size: 48px;
+    font-size: 54px;
+    font-weight: bolder;
     margin: 0px;
 }
 .message_card {
@@ -51,7 +52,7 @@ body {
 }
 .sendoff {
     font-family: var(--headerfont);
-    font-size: 42px;
+    font-size: 40px;
     color: var(--orange);
     border-bottom: 2px solid var(--orange);
     margin: 0;
@@ -69,7 +70,7 @@ body {
     font-family: var(--headerfont);
     text-align: center;
     color: var(--light);
-    font-size: 42px;
+    font-size: 36px;
     border: 2px solid var(--blue);
     border-radius: 5px;
     padding: 5px 20px;
