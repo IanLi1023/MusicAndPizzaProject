@@ -1,0 +1,132 @@
+body {
+    background-color: #A44200;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.drink-container {
+    background-color: #36393B;
+    border: 4px solid #6BBFFF;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    width: 300px;
+    height: 550px;
+}
+
+.drink-select {
+    background-color: #9B9B9B;
+    height: 30px;
+    width: 200px;
+}
+
+.drink-results-card {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    margin-bottom: 50px;
+}
+
+
+
+.submit-drink {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #A44200;
+    color: #9B9B9B;
+    border: 2px solid #6BBFFF;
+    font-size: 20px;
+    font-family: Cinzel;
+    height: 50px;
+    width: 165px;
+}
+
+.drink-result {
+    margin-top: 50px;
+}
+
+.food-container {
+    background-color: #36393B;
+    border: 4px solid #6BBFFF;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 100px;
+    width: 300px;
+    height: 550px;
+}
+
+.food-type {
+    background-color: #9B9B9B;
+    height: 30px;
+    width: 200px;
+}
+
+
+.submit-food {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #A44200;
+    color: #9B9B9B;
+    border: 2px solid #6BBFFF;
+    font-size: 20px;
+    font-family: Cinzel;
+    height: 50px;
+    width: 165px;
+}
+
+.drink-favorites {
+    background-color: #A44200;
+    color: #9B9B9B;
+    border: 2px solid #6BBFFF;
+    font-size: 16px;
+    font-family: Cinzel;
+    height: 50px;
+    width: 165px;
+}
+
+.food-results-card {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    margin-bottom: 50px;
+}
+
+.food-result {
+    margin-top: 50px;
+}
+
+.food-favorites {
+    background-color: #A44200;
+    color: #9B9B9B;
+    border: 2px solid #6BBFFF;
+    font-size: 16px;
+    font-family: Cinzel;
+    height: 50px;
+    width: 165px;
+}
+
+
+.view-favorites {
+    display: flex;
+    justify-content: center;
+}
+
+.view-favoritesBtn {
+    background-color: #A44200;
+    color: #9B9B9B;
+    border: 2px solid #6BBFFF;
+    font-size: 20px;
+    font-family: Cinzel;
+    height: 50px;
+    width: 175px;
+}
