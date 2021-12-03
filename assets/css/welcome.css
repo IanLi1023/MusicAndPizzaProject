@@ -79,7 +79,7 @@ body {
 }
 #randomizebtn:hover,
 #favoritesbtn:hover {
-    border: 5px solid var(--orange);
+    border: 2px solid var(--orange);
     background-color: var(--blue);
     color: var(--dark);
 }
