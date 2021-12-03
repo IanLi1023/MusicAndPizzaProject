@@ -1,0 +1,41 @@
+/* --dark: #36393B;
+    --blue: #6BBFFF;
+    --orange: #A44200;
+    --light: #9B9B9B; */
+
+body {
+    background-color: #A44200;
+}
+
+.container {
+    background-color: #36393B;
+    border: 3px solid #6BBFFF;
+    border-radius: 5px;
+}
+
+.card-title {
+  color:  #A44200;  
+}
+
+.card {
+    background-color: #9B9B9B;
+    border: 3px solid #6BBFFF;
+    border-radius: 5px;
+}
+
+.btn {
+    
+    background-color: #A44200 ;
+    border: 2px solid #6BBFFF;
+    border-radius: 5px;
+    color: #36393B;
+}
+
+a {
+    font-family: 'Cinzel', serif;
+}
+
+.custom-font-title {
+    font-family: 'Cinzel', serif;
+}
+
