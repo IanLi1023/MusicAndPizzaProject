@@ -1,16 +1,22 @@
-body {
-    background-color: #A44200;
+:root {
+    --dark: #36393b;
+    --blue: #6bbfff;
+    --orange: #a44200;
+    --light: #9b9b9b;
+    --headerfont: 'Cinzel', sans-serif;
+    --bodyfont: 'Playball', cursive;
 }
-
+body {
+    background-color: var(--orange);
+}
 .container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-
 .drink-container {
-    background-color: #36393B;
-    border: 4px solid #6BBFFF;
+    background-color: var(--dark);
+    border: 4px solid var(--blue);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -20,41 +26,34 @@ body {
     width: 300px;
     height: 550px;
 }
-
 .drink-select {
-    background-color: #9B9B9B;
+    background-color: var(--light);
     height: 30px;
     width: 200px;
 }
-
 .drink-results-card {
     display: flex;
     justify-content: center;
     width: 40%;
     margin-bottom: 50px;
 }
-
-
-
 .submit-drink {
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: #A44200;
-    color: #9B9B9B;
-    border: 2px solid #6BBFFF;
+    background-color: var(--orange);
+    color: var(--light);
+    border: 2px solid var(--blue);
     font-size: 20px;
-    font-family: Cinzel;
+    font-family: var(--headerfont);
     height: 50px;
     width: 165px;
 }
-
 .drink-result {
     margin-top: 50px;
 }
-
 .food-container {
-    background-color: #36393B;
-    border: 4px solid #6BBFFF;
+    background-color: var(--dark);
+    border: 4px solid var(--blue);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -64,69 +63,63 @@ body {
     width: 300px;
     height: 550px;
 }
-
 .food-type {
-    background-color: #9B9B9B;
+    background-color: var(--light);
     height: 30px;
     width: 200px;
 }
-
-
 .submit-food {
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: #A44200;
-    color: #9B9B9B;
-    border: 2px solid #6BBFFF;
+    background-color: var(--orange);
+    color: var(--light);
+    border: 2px solid var(--blue);
     font-size: 20px;
-    font-family: Cinzel;
+    font-family: var(--headerfont);
     height: 50px;
     width: 165px;
 }
-
 .drink-favorites {
-    background-color: #A44200;
-    color: #9B9B9B;
-    border: 2px solid #6BBFFF;
+    background-color: var(--orange);
+    color: var(--light);
+    border: 2px solid var(--blue);
     font-size: 16px;
-    font-family: Cinzel;
+    font-family: var(--headerfont);
     height: 50px;
     width: 165px;
 }
-
 .food-results-card {
     display: flex;
     justify-content: center;
     width: 40%;
     margin-bottom: 50px;
 }
-
 .food-result {
     margin-top: 50px;
 }
-
 .food-favorites {
-    background-color: #A44200;
-    color: #9B9B9B;
-    border: 2px solid #6BBFFF;
+    background-color: var(--orange);
+    color: var(--light);
+    border: 2px solid var(--blue);
     font-size: 16px;
-    font-family: Cinzel;
+    font-family: var(--headerfont);
     height: 50px;
     width: 165px;
 }
-
-
 .view-favorites {
     display: flex;
     justify-content: center;
 }
-
 .view-favoritesBtn {
-    background-color: #A44200;
-    color: #9B9B9B;
-    border: 2px solid #6BBFFF;
+    background-color: var(--orange);
+    color: var(--light);
+    border: 2px solid var(--blue);
     font-size: 20px;
-    font-family: Cinzel;
+    font-family: var(--headerfont);
     height: 50px;
     width: 175px;
+}
+.view-favoritesBtn:hover {
+    border: 3px solid var(--blue);
+    color: var(--dark);
 }

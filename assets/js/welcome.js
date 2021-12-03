@@ -4,10 +4,10 @@ const favoritesBtn = document.querySelector('#favoritesbtn');
 
 /*When the randomize button is clicked, the user is redirected to the results page*/
 randomizeBtn.addEventListener('click', function() {
-    
+    window.location.assign('search.html')
 });
 
 /*When the favorites button is clicked, the user is redirected to the favorites page*/
-randomizeBtn.addEventListener('click', function() {
-    
+favoritesBtn.addEventListener('click', function() {
+    window.location.assign('favorites.html')
 });
