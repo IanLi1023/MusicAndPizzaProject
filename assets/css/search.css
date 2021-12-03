@@ -55,6 +55,12 @@ body {
     margin-top: 50px;
 }
 
+.submit-drink:hover {
+    border: 2px solid var(--orange);
+    background-color: var(--blue);
+    color: var(--dark);
+}
+
 .food-container {
     background-color:  var(--dark);
     border: 5px solid var(--blue);
