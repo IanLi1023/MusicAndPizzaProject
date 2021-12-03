@@ -1,6 +1,33 @@
 const favoritesBtn = document.querySelector('.view-favoritesBtn');
+const foodImgEl = document.querySelector('#food-image');
+const drinkImgEl = document.querySelector('#drink-image');
+let foodNameEl = document.querySelector('#food-name');
+let drinkNameEl = document.querySelector('#drink-name');
+function getRandomDrinkApi(){
+    fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {            
+            drinkNameEl.textContent = data.drinks[0].strDrink;
+            let drnkImg = data.drinks[0].strDrinkThumb;
+            drinkImgEl.src = drnkImg;
+        })
+}
 
-
+function getRandomFoodApi(){
+    fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            foodNameEl.textContent = data.meals[0].strMeal;
+            let foodImg = data.meals[0].strMealThumb;
+            foodImgEl.src = foodImg;
+        })
+}
+getRandomDrinkApi();
+getRandomFoodApi();
 
 
 
