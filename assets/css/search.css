@@ -1,5 +1,5 @@
 body {
-background-color: #A44200;
+    background-color: #A44200;
 }
 
 .container {
@@ -18,7 +18,7 @@ background-color: #A44200;
     align-items: center;
     margin-left: 100px;
     width: 300px;
-    height: 550px; 
+    height: 550px;
 }
 
 .drink-select {
