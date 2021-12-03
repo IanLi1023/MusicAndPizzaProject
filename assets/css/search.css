@@ -52,8 +52,8 @@ body {
     margin-top: 50px;
 }
 .food-container {
-    background-color: #36393B;
-    border: 4px solid #6BBFFF;
+    background-color: var(--dark);
+    border: 4px solid var(--blue);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -64,7 +64,7 @@ body {
     height: 550px;
 }
 .food-type {
-    background-color: #9B9B9B;
+    background-color: var(--light);
     height: 30px;
     width: 200px;
 }
@@ -73,9 +73,9 @@ body {
     margin-bottom: 20px;
     background-color: var(--orange);
     color: var(--light);
-    border: 2px solid #6BBFFF;
+    border: 2px solid var(--blue);
     font-size: 20px;
-    font-family: Cinzel;
+    font-family: var(--headerfont);
     height: 50px;
     width: 165px;
 }
@@ -84,7 +84,7 @@ body {
     color: var(--light);
     border: 2px solid var(--blue);
     font-size: 16px;
-    font-family: Cinzel;
+    font-family: var(--headerfont);
     height: 50px;
     width: 165px;
 }
