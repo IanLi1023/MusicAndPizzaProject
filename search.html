@@ -11,8 +11,8 @@
 
     <title>Dinner Party App</title>
 
-    <!-- MDB
-    <link rel="stylesheet" href="css/mdb.min.css" /> -->
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css" rel="stylesheet">
     <!-- Link to CSS -->
     <link rel="stylesheet" href="assets/css/search.css" />
 </head>
@@ -40,8 +40,22 @@
 
                 </div>
                 <div class="drink-result">
-                    <img id="drink-image" src="#" />
+                    <a href="#" id="drink-link">
+                        <img src="#" id="drink-image" alt="#">
+                    </a>
                 </div>
+
+                <div id="drink-modal" class="drink-modal">
+                    <div id="drink-modal-content">
+                        <span id="close-drink">&times;</span>
+                        <h2 id="drink-modal-title"></h2>
+                        <div id="drink-modal-body">
+                            <ul id="drink-instructions">
+                            </ul>
+                        </div>  
+                    </div>
+                </div>
+    
             </div>
             <div>
                 <button class="drink-favorites">Add to Favorites</button>
@@ -62,7 +76,9 @@
 
                 </div>
                 <div class="food-result">
-                    <img id="food-image" src="#"/>
+                    <a href="#" id="food-link">
+                        <img src="#" id="food-image" alt="#">
+                    </a>
                 </div>
             </div>
             <div>
