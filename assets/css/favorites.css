@@ -1,32 +1,36 @@
-/* --dark: #36393B;
-    --blue: #6BBFFF;
-    --orange: #A44200;
-    --light: #9B9B9B; */
+:root {
+    --dark: #36393b;
+    --blue: #6bbfff;
+    --orange: #a44200;
+    --light: #9b9b9b;
+    --headerfont: 'Cinzel', sans-serif;
+    --bodyfont: 'Playball', cursive;
+}
 
 body {
-    background-color: #A44200;
+    background-color: var(--orange);
 }
 
 .container {
-    background-color: #36393B;
-    border: 3px solid #6BBFFF;
+    background-color: var(--dark);
+    border: 3px solid var(--blue);
     border-radius: 5px;
 }
 
 .card-title {
-  color:  #A44200;  
+  color: var(--orange);  
 }
 
 .card {
-    background-color: #9B9B9B;
-    border: 3px solid #6BBFFF;
+    background-color: var(--light);
+    border: 3px solid var(--blue);
     border-radius: 5px;
 }
 
 .btn {
     
-    background-color: #A44200 ;
-    border: 2px solid #6BBFFF;
+    background-color: var(--orange) ;
+    border: 2px solid var(--blue);
     border-radius: 5px;
     color: #36393B;
 }
