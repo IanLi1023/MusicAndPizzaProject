@@ -11,6 +11,22 @@ const DMHeader = document.querySelector("#drink-modal-title");
 const DMInstructions = document.querySelector("#drink-instructions");
 const DMContent = document.querySelector("#drink-modal-content");
 const DMBody = document.querySelector("#drink-modal-body");
+const foodModalEl = document.querySelector('#food-modal');
+const foodSpan = document.querySelector("#close-food");
+const FMHeader = document.querySelector("#food-modal-title");
+const FMInstructions = document.querySelector("#food-instructions");
+const FMContent = document.querySelector("#food-modal-content");
+const FMBody = document.querySelector("#food-modal-body");
+const foodRandomizeBtn = document.querySelector(".randomize-food");
+const drinkRandomizeBtn = document.querySelector(".randomize-drink");
+const randomizeBothBtn = document.querySelector(".randomize-bothBtn");
+const DDDrinkSelectBtn = document.querySelector("#drink-select")
+const drinkSubmitBtn = document.querySelector(".submit-drink")
+const DDFoodSelectBtn = document.querySelector("#food-list")
+const foodSubmitBtn = document.querySelector(".submit-food")
+
+
+
 function getRandomDrinkApi() {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
         .then(function (response) {
@@ -45,7 +61,7 @@ function getRandomDrinkApi() {
             drinkSpan.onclick = function () {
                 drinkModalEl.style.display = "none";
             }
-            
+
         })
 }
 
@@ -58,15 +74,155 @@ function getRandomFoodApi() {
             foodNameEl.textContent = data.meals[0].strMeal;
             let foodImg = data.meals[0].strMealThumb;
             foodImgEl.src = foodImg;
+
+            foodImgEl.onclick = function () {
+                FMBody.innerHTML = "";
+                FMInstructions.innerHTML = "";
+                foodModalEl.style.display = "block";
+                FMHeader.textContent = data.meals[0].strMeal;
+
+                for (let i = 1; i < 15; i++) {
+
+                    if (data.meals[0][`${'strIngredient' + i}`] && data.meals[0][`${'strMeasure' + i}`]) {
+                        const measure = data.meals[0][`${'strMeasure' + i}`];
+                        const recipe = data.meals[0][`${'strIngredient' + i}`];
+                        let recipeList = document.createElement('li');
+                        recipeList.textContent = (measure + recipe);
+                        FMInstructions.append(recipeList);
+                    }
+
+                }
+                let FMDirections = document.createElement('h4');
+                FMDirections.textContent = data.meals[0].strInstructions;
+                FMBody.append(FMInstructions);
+                FMBody.append(FMDirections);
+            }
+            foodSpan.onclick = function () {
+                foodModalEl.style.display = "none";
+            }
+
         })
 }
 getRandomDrinkApi();
 getRandomFoodApi();
 
-
-
-
 /*When the favorites button is clicked, the user is redirected to the favorites page*/
 favoritesBtn.addEventListener('click', function () {
     window.location.assign('favorites.html')
 });
+
+randomizeBothBtn.addEventListener('click', function () {
+    getRandomDrinkApi();
+    getRandomFoodApi();
+})
+
+foodRandomizeBtn.addEventListener('click', function () {
+    getRandomFoodApi();
+})
+
+drinkRandomizeBtn.addEventListener('click', function () {
+    getRandomDrinkApi();
+})
+
+drinkSubmitBtn.addEventListener('click', function () {
+    let DDUserChoice = DDDrinkSelectBtn.options[DDDrinkSelectBtn.selectedIndex].value
+    console.log(DDUserChoice)
+    function searchDrinkApi() {
+        fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + DDUserChoice)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                let randomNumber = Math.floor(Math.random() * data.drinks.length);
+                drinkNameEl.textContent = data.drinks[randomNumber].strDrink;
+                let drinkImg = data.drinks[randomNumber].strDrinkThumb;
+                drinkImgEl.src = drinkImg;
+                drinkImgEl.onclick = function () {
+                    DMBody.innerHTML = "";
+                    DMInstructions.innerHTML = "";
+                    drinkModalEl.style.display = "block";
+                    DMHeader.textContent = data.drinks[randomNumber].strDrink;
+
+                    let drinkID = data.drinks[randomNumber].idDrink;
+                    console.log(drinkID); 
+                    fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + drinkID)
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (data) {
+                        for (let i = 1; i < 15; i++) {
+
+                            if (data.drinks[0][`${'strIngredient' + i}`] && data.drinks[0][`${'strMeasure' + i}`]) {
+                                const measure = data.drinks[0][`${'strMeasure' + i}`];
+                                const recipe = data.drinks[0][`${'strIngredient' + i}`];
+                                let recipeList = document.createElement('li');
+                                recipeList.textContent = (measure + recipe);
+                                DMInstructions.append(recipeList);
+                            }
+
+                        }
+                        let DMDirections = document.createElement('h4');
+                        DMDirections.textContent = data.drinks[0].strInstructions;
+                        DMBody.append(DMInstructions);
+                        DMBody.append(DMDirections);
+                })
+                drinkSpan.onclick = function () {
+                    drinkModalEl.style.display = "none";
+                }}
+
+            })
+    }
+    searchDrinkApi()
+
+})
+
+foodSubmitBtn.addEventListener('click', function () {
+    let DDUserChoice = DDFoodSelectBtn.options[DDFoodSelectBtn.selectedIndex].value
+    console.log(DDUserChoice)
+    function searchFoodApi() {
+        fetch('https://www.themealdb.com/api/json/v1/1/filter.php?c=' + DDUserChoice)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                let randomNumber = Math.floor(Math.random() * data.meals.length);
+                foodNameEl.textContent = data.meals[randomNumber].strMeal;
+                let foodImg = data.meals[randomNumber].strMealThumb;
+                foodImgEl.src = foodImg;
+                foodImgEl.onclick = function () {
+                    FMBody.innerHTML = "";
+                    FMInstructions.innerHTML = "";
+                    foodModalEl.style.display = "block";
+                    FMHeader.textContent = data.meals[randomNumber].strMeal;
+
+                    let foodID = data.meals[randomNumber].idMeal;
+                    console.log(foodID); 
+                    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + foodID)
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (data) {
+                        for (let i = 1; i < 15; i++) {
+
+                    if (data.meals[0][`${'strIngredient' + i}`] && data.meals[0][`${'strMeasure' + i}`]) {
+                        const measure = data.meals[0][`${'strMeasure' + i}`];
+                        const recipe = data.meals[0][`${'strIngredient' + i}`];
+                        let recipeList = document.createElement('li');
+                        recipeList.textContent = (measure + recipe);
+                        FMInstructions.append(recipeList);
+                    }
+
+                }
+                let FMDirections = document.createElement('h4');
+                FMDirections.textContent = data.meals[0].strInstructions;
+                FMBody.append(FMInstructions);
+                FMBody.append(FMDirections);
+            })
+            foodSpan.onclick = function () {
+                foodModalEl.style.display = "none";
+            }}
+
+        })
+    }
+    searchFoodApi()
+})
