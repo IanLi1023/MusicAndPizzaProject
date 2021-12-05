@@ -22,14 +22,16 @@
     <div class="container">
 
         <div class="drink-container">
-            <select class="drink-select">
-                <option value="0">What would you like to drink?</option>
-                <option value="1">Whiskey</option>
-                <option value="2">Gin</option>
-                <option value="3">Vodka</option>
-                <option value="4">Tequila</option>
-                <option value="5">Rum</option>
-                <option value="6">Brandy</option>
+            <select id="drink-select">
+                <option disabled hidden selected>What would you like to drink?</option>
+                <option value="Whiskey" id="whiskey">Whiskey</option>
+                <option value="Gin" id="gin">Gin</option>
+                <option value="Vodka" id="vodka">Vodka</option>
+                <option value="Tequila" id="tequila">Tequila</option>
+                <option value="Rum" id="rum">Rum</option>
+                <option value="Brandy" id="brandy">Brandy</option>
+                <!-- <option value="Non-Alcoholic" id="non-alcoholic">Non-Alcoholic</option> -->
+
             </select>
             <button class="submit-drink">Submit</button>
 
@@ -57,15 +59,32 @@
                 </div>
     
             </div>
-            <div>
+            <div class="drink-buttons">
                 <button class="drink-favorites">Add to Favorites</button>
+                <button class="randomize-drink">Randomize</button>
             </div>
         </div>
 
 
         <div class="food-container">
             <div class="food-select">
-                <input class="food-type" type="text" placeholder="What would you like to eat?">
+                 
+                    <select id="food-list">
+                        <option disabled hidden selected>What would you like to eat?</option>
+                        <option value="Chicken" id="Chicken">Chicken</option>
+                        <option value="Pork" id="Pork">Pork</option>
+                        <option value="Beef" id="Beef">Beef</option>
+                        <option value="Seafood" id="Seafood">Seafood</option>
+                        <option value="Lamb" id="Lamb">Lamb</option>
+                        <option value="Pasta" id="Pasta">Pasta</option>
+                        <option value="Vegetarian" id="Vegetarian">Vegetarian</option>
+                        <option value="Vegan" id="Vegan">Vegan</option>
+                        <option value="Side" id="Side">Side</option>
+                        <option value="Dessert" id="Dessert">Dessert</option>
+                        <option value="Miscellaneous" id="Miscellaneous">Miscellaneous</option>
+    
+
+                    </select>
             </div>
             <button class="submit-food">Submit</button>
 
@@ -81,8 +100,20 @@
                     </a>
                 </div>
             </div>
-            <div>
+            <div class="food-buttons">
                 <button class="food-favorites">Add to Favorites</button>
+                <button class="randomize-food">Randomize</button>
+            </div>
+
+            <div id="food-modal" class="food-modal">
+                <div id="food-modal-content">
+                    <span id="close-food">&times;</span>
+                    <h2 id="food-modal-title"></h2>
+                    <div id="food-modal-body">
+                        <ul id="food-instructions">
+                        </ul>
+                    </div>  
+                </div>
             </div>
 
         </div>
@@ -90,6 +121,7 @@
 
     <div class="view-favorites">
         <button class="view-favoritesBtn">View Favorites</button>
+        <button class="randomize-bothBtn">Randomize Both</button>
     </div>
 
 
