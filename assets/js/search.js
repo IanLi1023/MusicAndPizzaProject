@@ -24,6 +24,8 @@ const DDDrinkSelectBtn = document.querySelector("#drink-select")
 const drinkSubmitBtn = document.querySelector(".submit-drink")
 const DDFoodSelectBtn = document.querySelector("#food-list")
 const foodSubmitBtn = document.querySelector(".submit-food")
+const drinkFavoritesBtn = document.querySelector('.drink-favorites');
+const foodFavoritesBtn = document.querySelector('.food-favorites')
 
 
 
@@ -33,6 +35,7 @@ function getRandomDrinkApi() {
             return response.json();
         })
         .then(function (data) {
+            const currentDrink = data.drinks[0];
             drinkNameEl.textContent = data.drinks[0].strDrink;
             let drinkImg = data.drinks[0].strDrinkThumb;
             drinkImgEl.src = drinkImg;
@@ -61,9 +64,37 @@ function getRandomDrinkApi() {
             drinkSpan.onclick = function () {
                 drinkModalEl.style.display = "none";
             }
+            // foodFavoritesBtn.addEventListener("click", function () {
+            //     console.log("hi")
+            //     if (localStorage.getItem("favoriteMeals") === null) {
+            //         myMeals = [];
+            //     } else {
+            //         myMeals = JSON.parse(localStorage.getItem("favoriteMeals"));
+            //     }
+            //     myMeals.push(currentMeal);
+            //     localStorage.setItem("favoriteMeals", JSON.stringify(myMeals));
+            // })
 
+            drinkFavoritesBtn.addEventListener("click", function () {
+                console.log("hi")
+                if (localStorage.getItem("favoriteDrinks") === null) {
+                    myDrinks = [];
+                } else {
+                    myDrinks = JSON.parse(localStorage.getItem("favoriteDrinks"));
+                }
+                // for (var i = 0; i < myDrinks.length; i++) {
+                //     if (myDrinks[i] === currentDrink) {
+                //        alert('duplicate')
+                //     } 
+                // else{
+                // }
+                myDrinks.push(currentDrink);
+                localStorage.setItem("favoriteDrinks", JSON.stringify(myDrinks));
+                
+            })
         })
 }
+
 
 function getRandomFoodApi() {
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
@@ -71,6 +102,7 @@ function getRandomFoodApi() {
             return response.json();
         })
         .then(function (data) {
+            const currentMeal = data.meals[0];
             foodNameEl.textContent = data.meals[0].strMeal;
             let foodImg = data.meals[0].strMealThumb;
             foodImgEl.src = foodImg;
@@ -101,6 +133,17 @@ function getRandomFoodApi() {
                 foodModalEl.style.display = "none";
             }
 
+            foodFavoritesBtn.addEventListener("click", function () {
+                console.log("hi")
+                if (localStorage.getItem("favoriteMeals") === null) {
+                    myMeals = [];
+                } else {
+                    myMeals = JSON.parse(localStorage.getItem("favoriteMeals"));
+                }
+                myMeals.push(currentMeal);
+                localStorage.setItem("favoriteMeals", JSON.stringify(myMeals));
+            })
+
         })
 }
 getRandomDrinkApi();
@@ -127,6 +170,7 @@ drinkRandomizeBtn.addEventListener('click', function () {
 drinkSubmitBtn.addEventListener('click', function () {
     let DDUserChoice = DDDrinkSelectBtn.options[DDDrinkSelectBtn.selectedIndex].value
     console.log(DDUserChoice)
+
     function searchDrinkApi() {
         fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + DDUserChoice)
             .then(function (response) {
@@ -144,31 +188,32 @@ drinkSubmitBtn.addEventListener('click', function () {
                     DMHeader.textContent = data.drinks[randomNumber].strDrink;
 
                     let drinkID = data.drinks[randomNumber].idDrink;
-                    console.log(drinkID); 
+                    console.log(drinkID);
                     fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + drinkID)
                         .then(function (response) {
                             return response.json();
                         })
                         .then(function (data) {
-                        for (let i = 1; i < 15; i++) {
+                            for (let i = 1; i < 15; i++) {
 
-                            if (data.drinks[0][`${'strIngredient' + i}`] && data.drinks[0][`${'strMeasure' + i}`]) {
-                                const measure = data.drinks[0][`${'strMeasure' + i}`];
-                                const recipe = data.drinks[0][`${'strIngredient' + i}`];
-                                let recipeList = document.createElement('li');
-                                recipeList.textContent = (measure + recipe);
-                                DMInstructions.append(recipeList);
+                                if (data.drinks[0][`${'strIngredient' + i}`] && data.drinks[0][`${'strMeasure' + i}`]) {
+                                    const measure = data.drinks[0][`${'strMeasure' + i}`];
+                                    const recipe = data.drinks[0][`${'strIngredient' + i}`];
+                                    let recipeList = document.createElement('li');
+                                    recipeList.textContent = (measure + recipe);
+                                    DMInstructions.append(recipeList);
+                                }
+
                             }
-
-                        }
-                        let DMDirections = document.createElement('h4');
-                        DMDirections.textContent = data.drinks[0].strInstructions;
-                        DMBody.append(DMInstructions);
-                        DMBody.append(DMDirections);
-                })
-                drinkSpan.onclick = function () {
-                    drinkModalEl.style.display = "none";
-                }}
+                            let DMDirections = document.createElement('h4');
+                            DMDirections.textContent = data.drinks[0].strInstructions;
+                            DMBody.append(DMInstructions);
+                            DMBody.append(DMDirections);
+                        })
+                    drinkSpan.onclick = function () {
+                        drinkModalEl.style.display = "none";
+                    }
+                }
 
             })
     }
@@ -179,6 +224,7 @@ drinkSubmitBtn.addEventListener('click', function () {
 foodSubmitBtn.addEventListener('click', function () {
     let DDUserChoice = DDFoodSelectBtn.options[DDFoodSelectBtn.selectedIndex].value
     console.log(DDUserChoice)
+
     function searchFoodApi() {
         fetch('https://www.themealdb.com/api/json/v1/1/filter.php?c=' + DDUserChoice)
             .then(function (response) {
@@ -196,33 +242,34 @@ foodSubmitBtn.addEventListener('click', function () {
                     FMHeader.textContent = data.meals[randomNumber].strMeal;
 
                     let foodID = data.meals[randomNumber].idMeal;
-                    console.log(foodID); 
+                    console.log(foodID);
                     fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + foodID)
                         .then(function (response) {
                             return response.json();
                         })
                         .then(function (data) {
-                        for (let i = 1; i < 15; i++) {
+                            for (let i = 1; i < 15; i++) {
 
-                    if (data.meals[0][`${'strIngredient' + i}`] && data.meals[0][`${'strMeasure' + i}`]) {
-                        const measure = data.meals[0][`${'strMeasure' + i}`];
-                        const recipe = data.meals[0][`${'strIngredient' + i}`];
-                        let recipeList = document.createElement('li');
-                        recipeList.textContent = (measure + recipe);
-                        FMInstructions.append(recipeList);
+                                if (data.meals[0][`${'strIngredient' + i}`] && data.meals[0][`${'strMeasure' + i}`]) {
+                                    const measure = data.meals[0][`${'strMeasure' + i}`];
+                                    const recipe = data.meals[0][`${'strIngredient' + i}`];
+                                    let recipeList = document.createElement('li');
+                                    recipeList.textContent = (measure + recipe);
+                                    FMInstructions.append(recipeList);
+                                }
+
+                            }
+                            let FMDirections = document.createElement('h4');
+                            FMDirections.textContent = data.meals[0].strInstructions;
+                            FMBody.append(FMInstructions);
+                            FMBody.append(FMDirections);
+                        })
+                    foodSpan.onclick = function () {
+                        foodModalEl.style.display = "none";
                     }
-
                 }
-                let FMDirections = document.createElement('h4');
-                FMDirections.textContent = data.meals[0].strInstructions;
-                FMBody.append(FMInstructions);
-                FMBody.append(FMDirections);
-            })
-            foodSpan.onclick = function () {
-                foodModalEl.style.display = "none";
-            }}
 
-        })
+            })
     }
     searchFoodApi()
 })
