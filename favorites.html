@@ -60,16 +60,19 @@
                         <!--Card content-->
                         <div class="card-block p-3">
                             <!--Title-->
-                            <h4 class="card-title text-center custom-font-title">Favorite Meals</h4>
+                            <h4 class="card-title text-center custom-font-title">Favorite Cocktails</h4>
                             <!--Text-->
-                            <div id="favorite-meal-container" class='row'>
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Meal 1</a>
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Meal 2</a>
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Meal 3</a>
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Meal 4</a>
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Meal 5</a>
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Meal 6</a>
-
+                            <div id="favorite-cocktail-container" class="row">
+                            </div>
+                            <div id="drink-modal" class="drink-modal">
+                                <div id="drink-modal-content">
+                                    <span id="close-drink">&times;</span>
+                                    <h2 id="drink-modal-title"></h2>
+                                    <div id="drink-modal-body">
+                                        <ul id="drink-instructions">
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -89,17 +92,20 @@
                         <!--Card content-->
                         <div class="card-block p-3">
                             <!--Title-->
-                            <h4 class="card-title text-center custom-font-title">Favorite Cocktails</h4>
+                            <h4 class="card-title text-center custom-font-title">Favorite Meals</h4>
                             <!--Text-->
-
-                            <div id="favorite-cocktail-container" class="row">
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Drink 1</a>
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Drink 2</a>
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Drink 3</a>
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Drink 4</a>
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Drink 5</a>
-                                <a href="#" class="btn btn-primary col-md-10 mx-5 btn mt-1">Fake Drink 6</a>
+                            <div id="favorite-meal-container" class='row'>
                             </div>
+                            <div id="food-modal" class="food-modal">
+                                <div id="food-modal-content">
+                                    <span id="close-food">&times;</span>
+                                    <h2 id="food-modal-title"></h2>
+                                    <div id="food-modal-body">
+                                        <ul id="food-instructions">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>                            
                         </div>
                         <!--/.Card content-->
 
@@ -131,7 +137,7 @@
     <!-- SCRIPTS -->
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"></script>
     <script src="./assets/js/favorites.js"></script>

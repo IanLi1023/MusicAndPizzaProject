@@ -144,6 +144,8 @@ body {
     border: 5px solid var(--blue);
     border-radius: 5px;
     opacity: 50%;
+    height: 240px;
+    width: 240px;
 }
 
 .submit-food {
@@ -226,7 +228,7 @@ body {
     font-family: var(--headerfont);
     height: 50px;
     width: 200px;
-    margin: 20px;
+    margin: 10px;
 }
 
 .view-favoritesBtn:hover {

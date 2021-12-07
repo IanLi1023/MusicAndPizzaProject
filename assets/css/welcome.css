@@ -14,6 +14,7 @@ body {
   color: var(--light);
 }
 .welcome_card {
+    margin-top: 40px;
     background-color: var(--dark);
     display: flex;
     flex-direction: column;
@@ -40,7 +41,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: var(--bodyfont);
-    font-size: 30px;
+    font-size: 28px;
     color: var(--dark);
     margin: 10px;
     padding: 5px;
