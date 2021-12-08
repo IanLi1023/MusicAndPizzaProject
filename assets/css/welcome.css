@@ -57,6 +57,7 @@ body {
     color: var(--orange);
     border-bottom: 2px solid var(--orange);
     margin: 0;
+    text-align: center;
 }
 .buttons {
     display: flex;
@@ -83,4 +84,15 @@ body {
     border: 2px solid var(--orange);
     background-color: var(--blue);
     color: var(--dark);
+}
+
+@media screen and (max-width: 750px) {
+.buttons {
+    flex-direction: column;
+}
+
+.welcome_card {
+    width: 90%;
+}
+
 }
