@@ -29,15 +29,15 @@ const foodFavoritesBtn = document.querySelector('.food-favorites')
 
 
 let currentDrink
+let currentMeal
+
 function getRandomDrinkApi() {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            //console.log(data.drinks[0]);
             currentDrink = data.drinks[0];
-            console.log('new random drink ', currentDrink);
             drinkNameEl.textContent = data.drinks[0].strDrink;
             let drinkImg = data.drinks[0].strDrinkThumb;
             drinkImgEl.src = drinkImg;
@@ -66,49 +66,36 @@ function getRandomDrinkApi() {
             drinkSpan.onclick = function () {
                 drinkModalEl.style.display = "none";
             }
-            // foodFavoritesBtn.addEventListener("click", function () {
-            //     console.log("hi")
-            //     if (localStorage.getItem("favoriteMeals") === null) {
-            //         myMeals = [];
-            //     } else {
-            //         myMeals = JSON.parse(localStorage.getItem("favoriteMeals"));
-            //     }
-            //     myMeals.push(currentMeal);
-            //     localStorage.setItem("favoriteMeals", JSON.stringify(myMeals));
-            // })
 
-            drinkFavoritesBtn.addEventListener("click", function (e) {
-                e.stopPropagation();
-                let myDrinks
-                if (localStorage.getItem("favoriteDrinks") === null) {
-                    myDrinks = [];
-                    //console.log(currentDrink);
-                    myDrinks.push(currentDrink);
-                    localStorage.setItem("favoriteDrinks", JSON.stringify(myDrinks));
-                } else {
-                    myDrinks = JSON.parse(localStorage.getItem("favoriteDrinks")); 
-                    console.log('afterparse', myDrinks)                  
-                    for (var i = 0; i < myDrinks.length; i++) {
-                        console.log('in for loop', myDrinks);
-                       
-                        if (myDrinks[i].idDrink === currentDrink.idDrink) {
-                             console.log('mydrinks ', myDrinks[i].idDrink);
-                            console.log('currentdrink ', currentDrink.idDrink);
-                            alert('Duplicate Drink');
-                            return;
-                        } 
-                        if (i === myDrinks.length - 1) {
-                            myDrinks.push(currentDrink);
-                            localStorage.setItem("favoriteDrinks", JSON.stringify(myDrinks));
-                            return;
-                        }
-                    } 
-                }  
-                        
-            })
+
         })
 }
 
+drinkFavoritesBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    let myDrinks
+    if (localStorage.getItem("favoriteDrinks") === null) {
+        myDrinks = [];
+        myDrinks.push(currentDrink);
+        localStorage.setItem("favoriteDrinks", JSON.stringify(myDrinks));
+    } else {
+        myDrinks = JSON.parse(localStorage.getItem("favoriteDrinks"));
+        for (var i = 0; i < myDrinks.length; i++) {
+
+
+            if (myDrinks[i].idDrink === currentDrink.idDrink) {
+                alert('Duplicate Drink');
+                return;
+            }
+            if (i === myDrinks.length - 1) {
+                myDrinks.push(currentDrink);
+                localStorage.setItem("favoriteDrinks", JSON.stringify(myDrinks));
+                return;
+            }
+        }
+    }
+
+})
 
 function getRandomFoodApi() {
     fetch('https://www.themealdb.com/api/json/v1/1/random.php')
@@ -116,11 +103,10 @@ function getRandomFoodApi() {
             return response.json();
         })
         .then(function (data) {
-            let currentMeal = data.meals[0];
+            currentMeal = data.meals[0];
             foodNameEl.textContent = data.meals[0].strMeal;
             let foodImg = data.meals[0].strMealThumb;
             foodImgEl.src = foodImg;
-
             foodImgEl.onclick = function () {
                 FMBody.innerHTML = "";
                 FMInstructions.innerHTML = "";
@@ -147,19 +133,34 @@ function getRandomFoodApi() {
                 foodModalEl.style.display = "none";
             }
 
-            foodFavoritesBtn.addEventListener("click", function () {
-                console.log("hi")
-                if (localStorage.getItem("favoriteMeals") === null) {
-                    myMeals = [];
-                } else {
-                    myMeals = JSON.parse(localStorage.getItem("favoriteMeals"));
-                }
-                myMeals.push(currentMeal);
-                localStorage.setItem("favoriteMeals", JSON.stringify(myMeals));
-            })
+
 
         })
 }
+
+foodFavoritesBtn.addEventListener("click", function (e) {
+    let myMeals
+    if (localStorage.getItem("favoriteMeals") === null) {
+        myMeals = [];
+        myMeals.push(currentMeal);
+        localStorage.setItem("favoriteMeals", JSON.stringify(myMeals));
+    } else {
+        myMeals = JSON.parse(localStorage.getItem("favoriteMeals"));
+        for (var i = 0; i < myMeals.length; i++) {
+            if (myMeals[i].idMeal === currentMeal.idMeal) {
+                alert('Duplicate Meal');
+                return;
+            }
+            if (i === myMeals.length - 1) {
+                myMeals.push(currentMeal);
+                localStorage.setItem("favoriteMeals", JSON.stringify(myMeals));
+                return;
+            }
+        }
+    }
+
+})
+
 getRandomDrinkApi();
 getRandomFoodApi();
 
@@ -184,7 +185,7 @@ drinkRandomizeBtn.addEventListener('click', function (e) {
 
 drinkSubmitBtn.addEventListener('click', function () {
     let DDUserChoice = DDDrinkSelectBtn.options[DDDrinkSelectBtn.selectedIndex].value
-    console.log(DDUserChoice)
+
 
     function searchDrinkApi() {
         fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + DDUserChoice)
@@ -203,7 +204,7 @@ drinkSubmitBtn.addEventListener('click', function () {
                     DMHeader.textContent = data.drinks[randomNumber].strDrink;
 
                     let drinkID = data.drinks[randomNumber].idDrink;
-                    console.log(drinkID);
+
                     fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + drinkID)
                         .then(function (response) {
                             return response.json();
@@ -238,7 +239,7 @@ drinkSubmitBtn.addEventListener('click', function () {
 
 foodSubmitBtn.addEventListener('click', function () {
     let DDUserChoice = DDFoodSelectBtn.options[DDFoodSelectBtn.selectedIndex].value
-    console.log(DDUserChoice)
+
 
     function searchFoodApi() {
         fetch('https://www.themealdb.com/api/json/v1/1/filter.php?c=' + DDUserChoice)
@@ -257,7 +258,7 @@ foodSubmitBtn.addEventListener('click', function () {
                     FMHeader.textContent = data.meals[randomNumber].strMeal;
 
                     let foodID = data.meals[randomNumber].idMeal;
-                    console.log(foodID);
+
                     fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + foodID)
                         .then(function (response) {
                             return response.json();
