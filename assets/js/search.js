@@ -28,14 +28,16 @@ const drinkFavoritesBtn = document.querySelector('.drink-favorites');
 const foodFavoritesBtn = document.querySelector('.food-favorites')
 
 
-
+let currentDrink
 function getRandomDrinkApi() {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            const currentDrink = data.drinks[0];
+            //console.log(data.drinks[0]);
+            currentDrink = data.drinks[0];
+            console.log('new random drink ', currentDrink);
             drinkNameEl.textContent = data.drinks[0].strDrink;
             let drinkImg = data.drinks[0].strDrinkThumb;
             drinkImgEl.src = drinkImg;
@@ -75,22 +77,34 @@ function getRandomDrinkApi() {
             //     localStorage.setItem("favoriteMeals", JSON.stringify(myMeals));
             // })
 
-            drinkFavoritesBtn.addEventListener("click", function () {
-                console.log("hi")
+            drinkFavoritesBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                let myDrinks
                 if (localStorage.getItem("favoriteDrinks") === null) {
                     myDrinks = [];
+                    //console.log(currentDrink);
+                    myDrinks.push(currentDrink);
+                    localStorage.setItem("favoriteDrinks", JSON.stringify(myDrinks));
                 } else {
-                    myDrinks = JSON.parse(localStorage.getItem("favoriteDrinks"));
-                }
-                // for (var i = 0; i < myDrinks.length; i++) {
-                //     if (myDrinks[i] === currentDrink) {
-                //        alert('duplicate')
-                //     } 
-                // else{
-                // }
-                myDrinks.push(currentDrink);
-                localStorage.setItem("favoriteDrinks", JSON.stringify(myDrinks));
-                
+                    myDrinks = JSON.parse(localStorage.getItem("favoriteDrinks")); 
+                    console.log('afterparse', myDrinks)                  
+                    for (var i = 0; i < myDrinks.length; i++) {
+                        console.log('in for loop', myDrinks);
+                       
+                        if (myDrinks[i].idDrink === currentDrink.idDrink) {
+                             console.log('mydrinks ', myDrinks[i].idDrink);
+                            console.log('currentdrink ', currentDrink.idDrink);
+                            alert('Duplicate Drink');
+                            return;
+                        } 
+                        if (i === myDrinks.length - 1) {
+                            myDrinks.push(currentDrink);
+                            localStorage.setItem("favoriteDrinks", JSON.stringify(myDrinks));
+                            return;
+                        }
+                    } 
+                }  
+                        
             })
         })
 }
@@ -102,7 +116,7 @@ function getRandomFoodApi() {
             return response.json();
         })
         .then(function (data) {
-            const currentMeal = data.meals[0];
+            let currentMeal = data.meals[0];
             foodNameEl.textContent = data.meals[0].strMeal;
             let foodImg = data.meals[0].strMealThumb;
             foodImgEl.src = foodImg;
@@ -163,7 +177,8 @@ foodRandomizeBtn.addEventListener('click', function () {
     getRandomFoodApi();
 })
 
-drinkRandomizeBtn.addEventListener('click', function () {
+drinkRandomizeBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
     getRandomDrinkApi();
 })
 
