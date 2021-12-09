@@ -6,12 +6,22 @@
     --headerfont: 'Cinzel', sans-serif;
     --bodyfont: 'Playball', cursive;
 }
+* {
+    box-sizing: border-box;
+}
 body {
     height: 100%;
     background-color: var(--orange);
 }
+#messageEl {
+    text-align: center;
+    font-family: var(--headerfont);
+    font-size: 12px;
+    color: black;
+    margin-top: 0;
+}
 .container {
-    /* margin: 50px; */
+    margin-top: .5%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -25,7 +35,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 100px;
+    margin: 2.5%;
     width: 30%;
 }
 #drink-select, #food-list {
@@ -59,7 +69,7 @@ body {
     margin: 15% auto;
     padding: 20px;
     border: 5px solid var(--blue);
-    width: 30%;
+    width: 40%;
 }
 #food-modal-content {
     background-color: var(--light);
@@ -119,10 +129,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-right: 100px;
     width: 30%;
 }
-
 #food-image, #drink-image {
     display: block;
     height: 250px;
@@ -132,8 +140,8 @@ body {
     border: 5px solid var(--blue);
     border-radius: 5px;
     opacity: 50%;
-    height: 240px;
-    width: 240px;
+    height: 250px;
+    width: 250px;
 }
 .submit-food {
     margin-top: 20px;
@@ -195,14 +203,15 @@ body {
 }
 .food-buttons, .drink-buttons {
     display:flex;
-    justify-content: space-around;
-
+    justify-content: center;
 }
 .view-favorites {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .view-favoritesBtn, .randomize-bothBtn {
+    justify-content: center;
     align-items: center;
     background-color: var(--light);
     color: var(--dark);
@@ -220,72 +229,49 @@ body {
     background-color: var(--blue);
     color: var(--orange);
 }
-
 @media screen and (max-width: 1325px) {
     .drink-container, .food-container {
         width: 40%;
     }
 }
-
-@media screen and (max-width: 1025px) {
-    .drink-container, .food-container {
-        width: 45%;
-    }
-}
-
 @media screen and (max-width: 925px) {
     .food-buttons, .drink-buttons {
      flex-direction: column;
     }
     
 }
-
-@media screen and (max-width: 715px) {
-  
-    .drink-container, .food-container {
-        width: 50%;
-    }
-
-    .container {
-        margin: 60px;
-    }
-
+@media screen and (max-width: 715px) { 
     #food-image, #drink-image {
         display: block;
         height: 225px;
         width: 225px;
     }
-
+    #food-image:hover, #drink-image:hover {
+        height: 215px;
+        width: 215px;
+    }
 }
-
-@media screen and (max-width: 650px) {
-  
+@media screen and (max-width: 650px) { 
     .drink-container, .food-container {
         width: 80%;
         margin: auto;
         margin-bottom: 20px;
     }
     .container {
-        margin: 60px;
         flex-direction: column;
         margin-bottom: 15px;
     }
-
     #food-image, #drink-image {
         display: block;
         height: 225px;
         width: 225px;
     }
-
 }
-
 @media screen and (max-width: 500px) {
     .drink-container, .food-container {
-        width: 100%;
         margin: auto;
         margin-bottom: 20px;
     }
-
     #drink-name, #food-name {
         margin: 0;
         text-align: center;
@@ -293,37 +279,7 @@ body {
         font-size: 20px;
         width: 250px;
     }
-
     .view-favoritesBtn, .randomize-bothBtn {
-        align-items: center;
-        background-color: var(--light);
-        color: var(--dark);
-        border: 2px solid var(--dark);
-        border-radius: 5px;
         font-size: 15px;
-        font-weight: bold;
-        font-family: var(--headerfont);
-        height: 50px;
-        width: 200px;
-        margin: 10px;
     }
 }
-
-@media screen and (max-width: 375px) {
-    .drink-container, .food-container {
-        width: 120%;
-        margin: auto;
-        margin-bottom: 20px;
-        margin-left: -25px;
-    }
-}
-
-@media screen and (max-width: 340px) {
-    .drink-container, .food-container {
-        width: 140%;
-        margin: auto;
-        margin-bottom: 20px;
-        margin-left: -45px;
-    }
-}
-
