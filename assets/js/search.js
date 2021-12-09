@@ -43,7 +43,7 @@ function getRandomDrinkApi() {
             drinkNameEl.textContent = data.drinks[0].strDrink;
             let drinkImg = data.drinks[0].strDrinkThumb;
             drinkImgEl.src = drinkImg;
-            // When the user clicks on the image, a modul pops up conatining the instructions on how to make the drink.
+            // When the user clicks on the image, a modal pops up conatining the instructions on how to make the drink.
             drinkImgEl.onclick = function () {
                 DMBody.innerHTML = "";
                 DMInstructions.innerHTML = "";
@@ -117,7 +117,7 @@ function getRandomFoodApi() {
             foodNameEl.textContent = data.meals[0].strMeal;
             let foodImg = data.meals[0].strMealThumb;
             foodImgEl.src = foodImg;
-            // When the user clicks on the image, a modul pops up conatining the instructions on how to make the meal.
+            // When the user clicks on the image, a modal pops up conatining the instructions on how to make the meal.
             foodImgEl.onclick = function () {
                 FMBody.innerHTML = "";
                 FMInstructions.innerHTML = "";
@@ -221,19 +221,21 @@ drinkSubmitBtn.addEventListener('click', function () {
                 drinkNameEl.textContent = data.drinks[randomNumber].strDrink;
                 let drinkImg = data.drinks[randomNumber].strDrinkThumb;
                 drinkImgEl.src = drinkImg;
-                // When the user clicks on the image, a modul pops up conatining the instructions on how to make the drink.
+                // Grab the recipe from a different API.
+                let drinkID = data.drinks[randomNumber].idDrink;
+                fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + drinkID)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        currentDrink = data.drinks[0];
+                    })
+                // When the user clicks on the image, a modal pops up conatining the instructions on how to make the drink.
                 drinkImgEl.onclick = function () {
                     DMBody.innerHTML = "";
                     DMInstructions.innerHTML = "";
                     drinkModalEl.style.display = "block";
                     DMHeader.textContent = data.drinks[randomNumber].strDrink;
-                    // Grab the recipe from a different API.
-                    let drinkID = data.drinks[randomNumber].idDrink;
-                    fetch('https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=' + drinkID)
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (data) {
                             for (let i = 1; i < 15; i++) {
                                 if (data.drinks[0][`${'strIngredient' + i}`] && data.drinks[0][`${'strMeasure' + i}`]) {
                                     const measure = data.drinks[0][`${'strMeasure' + i}`];
@@ -243,19 +245,17 @@ drinkSubmitBtn.addEventListener('click', function () {
                                     DMInstructions.append(recipeList);
                                 }
                             }
-                            let DMDirections = document.createElement('h4');
-                            DMDirections.textContent = data.drinks[0].strInstructions;
-                            DMBody.append(DMInstructions);
-                            DMBody.append(DMDirections);
-                        })
-                    // When the user clicks the x, the modal closes
-                    drinkSpan.onclick = function () {
-                        drinkModalEl.style.display = "none";
-                    }
+                    let DMDirections = document.createElement('h4');
+                    DMDirections.textContent = data.drinks[0].strInstructions;
+                    DMBody.append(DMInstructions);
+                    DMBody.append(DMDirections);
                 }
-
+                // When the user clicks the x, the modal closes
+                drinkSpan.onclick = function () {
+                    drinkModalEl.style.display = "none";
+                }
             })
-    }
+    }    
     // Run the Search Drink Function when the search button is clicked.
     searchDrinkApi()
 })
@@ -276,19 +276,21 @@ foodSubmitBtn.addEventListener('click', function () {
                 foodNameEl.textContent = data.meals[randomNumber].strMeal;
                 let foodImg = data.meals[randomNumber].strMealThumb;
                 foodImgEl.src = foodImg;
-                // When the user clicks on the image, a modul pops up conatining the instructions on how to make the meal.
+                // Grab the recipe from a different API.
+                let foodID = data.meals[randomNumber].idMeal;
+                fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + foodID)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        currentMeal = data.meals[0];
+                    })
+                // When the user clicks on the image, a modal pops up conatining the instructions on how to make the meal.
                 foodImgEl.onclick = function () {
                     FMBody.innerHTML = "";
                     FMInstructions.innerHTML = "";
                     foodModalEl.style.display = "block";
                     FMHeader.textContent = data.meals[randomNumber].strMeal;
-                    // Grab the recipe from a different API.
-                    let foodID = data.meals[randomNumber].idMeal;
-                    fetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + foodID)
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (data) {
                             for (let i = 1; i < 15; i++) {
                                 if (data.meals[0][`${'strIngredient' + i}`] && data.meals[0][`${'strMeasure' + i}`]) {
                                     const measure = data.meals[0][`${'strMeasure' + i}`];
@@ -298,17 +300,15 @@ foodSubmitBtn.addEventListener('click', function () {
                                     FMInstructions.append(recipeList);
                                 }
                             }
-                            let FMDirections = document.createElement('h4');
-                            FMDirections.textContent = data.meals[0].strInstructions;
-                            FMBody.append(FMInstructions);
-                            FMBody.append(FMDirections);
-                        })
-                    // When the user clicks the x, the modal closes
-                    foodSpan.onclick = function () {
-                        foodModalEl.style.display = "none";
-                    }
+                    let FMDirections = document.createElement('h4');
+                    FMDirections.textContent = data.meals[0].strInstructions;
+                    FMBody.append(FMInstructions);
+                    FMBody.append(FMDirections);
                 }
-
+                // When the user clicks the x, the modal closes
+                foodSpan.onclick = function () {
+                    foodModalEl.style.display = "none";
+                }
             })
     }
     // Run the Search Food Function when the search button is clicked.
