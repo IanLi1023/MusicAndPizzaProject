@@ -229,13 +229,12 @@ drinkSubmitBtn.addEventListener('click', function () {
                     })
                     .then(function (data) {
                         currentDrink = data.drinks[0];
-                    })
-                // When the user clicks on the image, a modal pops up conatining the instructions on how to make the drink.
-                drinkImgEl.onclick = function () {
-                    DMBody.innerHTML = "";
-                    DMInstructions.innerHTML = "";
-                    drinkModalEl.style.display = "block";
-                    DMHeader.textContent = data.drinks[randomNumber].strDrink;
+                        // When the user clicks on the image, a modal pops up conatining the instructions on how to make the drink.
+                        drinkImgEl.onclick = function () {
+                            DMBody.innerHTML = "";
+                            DMInstructions.innerHTML = "";
+                            drinkModalEl.style.display = "block";
+                            DMHeader.textContent = data.drinks[0].strDrink;
                             for (let i = 1; i < 15; i++) {
                                 if (data.drinks[0][`${'strIngredient' + i}`] && data.drinks[0][`${'strMeasure' + i}`]) {
                                     const measure = data.drinks[0][`${'strMeasure' + i}`];
@@ -245,15 +244,16 @@ drinkSubmitBtn.addEventListener('click', function () {
                                     DMInstructions.append(recipeList);
                                 }
                             }
-                    let DMDirections = document.createElement('h4');
-                    DMDirections.textContent = data.drinks[0].strInstructions;
-                    DMBody.append(DMInstructions);
-                    DMBody.append(DMDirections);
-                }
-                // When the user clicks the x, the modal closes
-                drinkSpan.onclick = function () {
-                    drinkModalEl.style.display = "none";
-                }
+                            let DMDirections = document.createElement('h4');
+                            DMDirections.textContent = data.drinks[0].strInstructions;
+                            DMBody.append(DMInstructions);
+                            DMBody.append(DMDirections);
+                        }
+                    })
+                        // When the user clicks the x, the modal closes
+                        drinkSpan.onclick = function () {
+                            drinkModalEl.style.display = "none";
+                        }
             })
     }    
     // Run the Search Drink Function when the search button is clicked.
@@ -284,13 +284,12 @@ foodSubmitBtn.addEventListener('click', function () {
                     })
                     .then(function (data) {
                         currentMeal = data.meals[0];
-                    })
-                // When the user clicks on the image, a modal pops up conatining the instructions on how to make the meal.
-                foodImgEl.onclick = function () {
-                    FMBody.innerHTML = "";
-                    FMInstructions.innerHTML = "";
-                    foodModalEl.style.display = "block";
-                    FMHeader.textContent = data.meals[randomNumber].strMeal;
+                        // When the user clicks on the image, a modal pops up conatining the instructions on how to make the meal.
+                        foodImgEl.onclick = function () {
+                            FMBody.innerHTML = "";
+                            FMInstructions.innerHTML = "";
+                            foodModalEl.style.display = "block";
+                            FMHeader.textContent = data.meals[0].strMeal;
                             for (let i = 1; i < 15; i++) {
                                 if (data.meals[0][`${'strIngredient' + i}`] && data.meals[0][`${'strMeasure' + i}`]) {
                                     const measure = data.meals[0][`${'strMeasure' + i}`];
@@ -300,11 +299,12 @@ foodSubmitBtn.addEventListener('click', function () {
                                     FMInstructions.append(recipeList);
                                 }
                             }
-                    let FMDirections = document.createElement('h4');
-                    FMDirections.textContent = data.meals[0].strInstructions;
-                    FMBody.append(FMInstructions);
-                    FMBody.append(FMDirections);
-                }
+                            let FMDirections = document.createElement('h4');
+                            FMDirections.textContent = data.meals[0].strInstructions;
+                            FMBody.append(FMInstructions);
+                            FMBody.append(FMDirections);
+                        }
+                    })
                 // When the user clicks the x, the modal closes
                 foodSpan.onclick = function () {
                     foodModalEl.style.display = "none";
