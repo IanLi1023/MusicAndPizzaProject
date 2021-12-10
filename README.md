@@ -1,4 +1,6 @@
 # Project1_DinnerParty
+#Contributors
+Ian Li, Austin Morrow, and Stuart Wood
 # Description:
 Having a hard time deciding what to eat or what to drink?  Let our Dinner Party App choose for you!
 Find a food or cocktail recipe that will satisfy your cravings.  You can be brave and randomize your food or drink choice.  You can even choose by food type or by your favorite  alcohol!  Either way, we’ll provide you the recipes  that will help you make your dinner come alive!
