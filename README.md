@@ -1,5 +1,5 @@
 # Project1_DinnerParty
-#Contributors:
+# Contributors:
 Ian Li, Austin Morrow, and Stuart Wood
 # Description:
 Having a hard time deciding what to eat or what to drink?  Let our Dinner Party App choose for you!
