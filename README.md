@@ -11,4 +11,4 @@ HTML, CSS, JavaScript
 <img width="957" alt="Search HTML" src="https://user-images.githubusercontent.com/82473623/145340691-35f3bff9-eabd-4084-8a30-16813168a879.png">
 <img width="953" alt="Favorites HTML" src="https://user-images.githubusercontent.com/82473623/145340693-9a7ddb4a-9a16-49cb-aab3-e0b7564f8b84.png">
 # Link to website:
-https://agmorrow.github.io/Project1_DinnerParty/
+https://agmorrow.github.io/DinnerParty-App//
